@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -26,8 +26,5 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: |
-          dotnet test --no-build --verbosity normal
-       
-          dotnet add package TeamCity.dotCover
-          dotnet test
-      
+            dotnet dotcover
+            dotCover.exe dotnet --output=AppCoverageReport.html --reportType=HTML -- test "TestProject1.csproj"
