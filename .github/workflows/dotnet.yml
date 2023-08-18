@@ -27,5 +27,6 @@ jobs:
     - name: Test
       run: |
            dotnet tool install JetBrains.dotCover.GlobalTool -g
-            dotnet dotcover
+         
             dotCover.exe dotnet --output=AppCoverageReport.html --reportType=HTML -- test "TestProject1.csproj"
+          
