@@ -23,10 +23,7 @@ jobs:
     - name: Unzip Artifact
       run: |
         Get-ChildItem -Path $GITHUB_WORKSPACE -Recurse | Group-Object -Property Extension | sort -Descending -Property Count
-        Expand-Archive -Path ./Package/Application_Artifact.zip -DestinationPath unzipped-artifact
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: ./Package
+
     - name: Run Tests
       run: |
         cd unzipped-artifact
