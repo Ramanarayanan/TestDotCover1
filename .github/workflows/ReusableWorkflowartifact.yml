@@ -32,7 +32,7 @@ jobs:
       run: |
            dotnet tool install --global JetBrains.dotCover.GlobalTool
            dotnet dotcover test ./Package/TestProject1/TestProject1.dll --dcReportType=HTML --logger "console;verbosity=normal"
-           dotCover.exe dotnet --output=AppCoverageReport.html --reportType=HTML --test ./Package/TestProject1/TestProject1.dll
+           dotCover.sh dotnet --output=myRep.html --reportType=HTML -- test ./Package/TestProject1/TestProject1.dll
 
 
     
