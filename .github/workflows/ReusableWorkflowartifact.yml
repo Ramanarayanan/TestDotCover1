@@ -27,7 +27,13 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: ./Package
-    
+    - name: Install DotCover nuget
+      run: |
+           Install-Package JetBrains.dotCover.CommandLineTools -Version 2021.1.0
+           unzip dotCover.zip -d dotcover
+    - name: Test
+      run: dotnet test ./Package/TestProject1/TestProject1.dll --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+
     - name: Install DotCover
       run: |
            dotnet tool install --global JetBrains.dotCover.GlobalTool
