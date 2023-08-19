@@ -23,7 +23,7 @@ jobs:
       run: dotnet build --no-restore
 
     - name: publish
-      run: dotnet publish TestDotCover1/WebApplication1/WebApplication1.csproj --configuration Release --output publish/WebApplication1
+      run: dotnet publish TestDotCover1/TestDotCover1/WebApplication1/WebApplication1.csproj --configuration Release --output publish/WebApplication1
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v2
       with:
