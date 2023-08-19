@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
          name: Application_Artifact
-         path: "../package"
+         path: TestDotCover1/package
       
           
   
