@@ -38,13 +38,13 @@ jobs:
        run: |
         # Install dotCover here, replace with your actual dotCover installation steps
         # Example:
-         dotnet add package JetBrains.dotCover.CommandLineTools --version 2023.2.0
+          dotnet tool install --global JetBrains.dotCover.GlobalTool
     
      - name: Generate Coverage Report
        run: |
         # Replace with your actual dotCover command to generate a report
         # Example:
-         dotcover.exe report /Source=./Package/TestProject1/TestProject1.dll /Output=coverage-report.html
+         dotnet dotcover report /Source=./Package/TestProject1/TestProject1.dll /Output=coverage-report.html
 
      - name: Display coverage report
        run: Get-Content coverage_report.html
