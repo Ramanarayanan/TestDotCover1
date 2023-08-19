@@ -27,7 +27,13 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: ./Package
-    
+    - name: Install DotCover nuget
+      run: |
+           https://download-cdn.jetbrains.com/resharper/dotUltimate.2023.2/JetBrains.dotCover.CommandLineTools.linux-x64.2023.2.tar.gz
+           unzip JetBrains.dotCover.CommandLineTools.linux-x64.2023.2.tar -d dotcover
+    - name: Test
+      run: dotnet test ./Package/TestProject1/TestProject1.dll --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+
     - name: Install DotCover
       run: |
            dotnet tool install --global JetBrains.dotCover.GlobalTool
