@@ -44,7 +44,8 @@ jobs:
        run: |
         # Replace with your actual dotCover command to generate a report
         # Example:
-         dotnet dotcover report /Source=./Package/TestProject1/TestProject1.dll /Output=coverage-report.html
+        
+         dotnet dotcover test ./Package/TestProject1/TestProject1.dll --dcReportType=HTML --dcOutput=../../coverage/AppCoverageReport.html
 
      - name: Display coverage report
        run: Get-Content coverage_report.html
