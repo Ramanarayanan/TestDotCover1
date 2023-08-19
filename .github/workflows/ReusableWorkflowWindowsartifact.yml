@@ -13,42 +13,47 @@ jobs:
     needs: build
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-
-    - uses: actions/download-artifact@v3
-      id: download
-      with:
+     - name: Setup .NET
+       uses: actions/setup-dotnet@v3
+       with:
+         dotnet-version: 6.0.x
+     - name: Download artifact
+       uses: actions/checkout@v3
+     
+     - uses: actions/download-artifact@v3
+       id: download
+       with:
         name: Application_Artifact
         path: ./Package  
-    - name: Unzip Artifact
-      run: |
-        Get-ChildItem -Path $GITHUB_WORKSPACE -Recurse | Group-Object -Property Extension | sort -Descending -Property Count
+     - name: Unzip Artifact
+       run: |
+         Get-ChildItem -Path $GITHUB_WORKSPACE -Recurse | Group-Object -Property Extension | sort -Descending -Property Count
 
-    - name: Run Tests
-      run: |
+     - name: Run Tests
+       run: |
        
         dotnet test ./Package/TestProject1/TestProject1.dll --no-build --logger:trx
 
-    - name: Install dotCover
-      run: |
+     - name: Install dotCover
+       run: |
         # Install dotCover here, replace with your actual dotCover installation steps
         # Example:
         # dotnet add package JetBrains.dotCover.CommandLineTools --version 2023.2.0
-        choco install dotcover
-    - name: Generate Coverage Report
-      run: |
+         choco install dotcover
+     - name: Generate Coverage Report
+       run: |
         # Replace with your actual dotCover command to generate a report
         # Example:
          dotcover.exe report /Source=./Package/TestProject1/TestProject1.dll /Output=coverage-report.html
 
-    - name: Display coverage report
-      run: Get-Content coverage_report.html
+     - name: Display coverage report
+       run: Get-Content coverage_report.html
 
-    - name: Upload Coverage Report as Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: coverage-report.html
+     - name: Upload Coverage Report as Artifact
+       uses: actions/upload-artifact@v2
+       with:
+         name: coverage-report
+         path: coverage-report.html
           
   
     
