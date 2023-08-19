@@ -38,8 +38,8 @@ jobs:
        run: |
         # Install dotCover here, replace with your actual dotCover installation steps
         # Example:
-        # dotnet add package JetBrains.dotCover.CommandLineTools --version 2023.2.0
-         choco install dotcover
+         dotnet add package JetBrains.dotCover.CommandLineTools --version 2023.2.0
+    
      - name: Generate Coverage Report
        run: |
         # Replace with your actual dotCover command to generate a report
