@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
          name: Application_Artifact
-         path: /home/runner/work/WebApplication1/release/
+         path: ${{env.DOTNET_ROOT}}/WebApplication1
       
           
   
