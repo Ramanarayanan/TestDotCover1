@@ -1,0 +1,59 @@
+
+name: ReusableWorkflowWindowsartifact
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    
+    uses: ./.github/workflows/uploadartifact.yml
+  
+  deploy:
+    needs: build
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/download-artifact@v3
+      id: download
+      with:
+        name: Application_Artifact
+        path: ./Package  
+    - name: Unzip Artifact
+      run: Expand-Archive -Path ./Package/Application_Artifact.zip -DestinationPath unzipped-artifact
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./Package
+    - name: Run Tests
+      run: |
+        cd unzipped-artifact
+        dotnet test --no-build --logger:trx
+
+    - name: Install dotCover
+      run: |
+        # Install dotCover here, replace with your actual dotCover installation steps
+        # Example:
+        dotnet add package JetBrains.dotCover.CommandLineTools --version 2023.2.0
+        choco install dotcover
+    - name: Generate Coverage Report
+      run: |
+        # Replace with your actual dotCover command to generate a report
+        # Example:
+        # dotcover.exe report /Source=unzipped-artifact/TestPeroject.dll /Output=coverage-report.html
+
+    - name: Display or Attach Report
+      run: |
+        # Replace with your steps to display the report, for example, opening an issue with the report attached
+        # Example:
+        # echo "Coverage report is available!"
+        # Create a GitHub issue with the coverage-report.html attached
+
+    - name: Upload Coverage Report as Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: coverage-report.html
+          
+  
+    
