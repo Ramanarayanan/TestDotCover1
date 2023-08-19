@@ -28,8 +28,10 @@ jobs:
       run: ls -R
       working-directory: ./Package
     
-    - name: Unzip artifact
-      run: unzip $GITHUB_WORKSPACE/Package
+    - name: Install DotCover
+      run: |
+           dotnet tool install --global JetBrains.dotCover.GlobalTool
+           dotnet dotcover test --dcReportType=HTML
     
           
   
