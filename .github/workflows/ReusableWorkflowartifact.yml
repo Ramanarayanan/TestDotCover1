@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     
-    uses: ./.github/workflows/artifact.yml
+    uses: ./.github/workflows/uploadartifact.yml
   
   deploy:
     needs: build
@@ -25,6 +25,8 @@ jobs:
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: ./Package
+    - name: Unzip artifact
+      run: unzip Application_Artifact.zip
     
           
   
