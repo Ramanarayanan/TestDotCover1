@@ -20,11 +20,8 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: Application_Artifact
-        path: ./Package
-        
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: ./Package
+        path: ./Package        
+    
     - name: Unzip artifact
       run: unzip $GITHUB_WORKSPACE/Package/Application_Artifact
     
