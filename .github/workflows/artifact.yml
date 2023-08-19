@@ -23,7 +23,7 @@ jobs:
       run: dotnet build --no-restore
 
     - name: publish
-      run: dotnet publish WebApplication1.sln -c Release -o release — nologo
+      run: dotnet publish WebApplication1/WebApplication1.csproj -c Release -o release — nologo
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v2
       with:
