@@ -26,7 +26,7 @@ jobs:
       run: ls -R
       working-directory: ./Package
     - name: Unzip artifact
-      run: unzip $GITHUB_WORKSPACE/Package/Application_Artifact.zip
+      run: unzip $GITHUB_WORKSPACE/Package/Application_Artifact
     
           
   
