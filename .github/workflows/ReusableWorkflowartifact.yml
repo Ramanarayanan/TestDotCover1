@@ -29,7 +29,7 @@ jobs:
       working-directory: ./Package
     - name: Install DotCover nuget
       run: |
-           Install-Package JetBrains.dotCover.CommandLineTools -Version 2021.1.0
+           dotnet add package JetBrains.dotCover.CommandLineTools --version 2023.2.0
            unzip dotCover.zip -d dotcover
     - name: Test
       run: dotnet test ./Package/TestProject1/TestProject1.dll --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
