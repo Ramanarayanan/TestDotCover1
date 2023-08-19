@@ -31,7 +31,7 @@ jobs:
     - name: Install DotCover
       run: |
            dotnet tool install --global JetBrains.dotCover.GlobalTool
-           dotnet dotcover test --dcReportType=HTML --Scope = "TestProject1.dll"
+           dotnet dotcover test ./Package/TestProject1/TestProject1.dll --dcReportType=HTML 
     
           
   
