@@ -23,7 +23,7 @@ jobs:
         path: ./Package        
     
     - name: Unzip artifact
-      run: unzip $GITHUB_WORKSPACE/Package/Application_Artifact
+      run: unzip $GITHUB_WORKSPACE/Package
     
           
   
