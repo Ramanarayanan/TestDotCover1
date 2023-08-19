@@ -30,5 +30,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
          name: Application_Artifact
-         path: publish/WebApplication1
+         path: |
+                publish/WebApplication1
+                publish/TestProject1
   
