@@ -33,13 +33,13 @@ jobs:
       run: |
         # Install dotCover here, replace with your actual dotCover installation steps
         # Example:
-        dotnet add package JetBrains.dotCover.CommandLineTools --version 2023.2.0
+        # dotnet add package JetBrains.dotCover.CommandLineTools --version 2023.2.0
         choco install dotcover
     - name: Generate Coverage Report
       run: |
         # Replace with your actual dotCover command to generate a report
         # Example:
-        # dotcover.exe report /Source=unzipped-artifact/TestPeroject.dll /Output=coverage-report.html
+        # dotcover.exe report /Source=./Package/TestProject1/TestProject1.dll /Output=coverage-report.html
 
     - name: Display or Attach Report
       run: |
