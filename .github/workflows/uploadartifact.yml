@@ -24,6 +24,8 @@ jobs:
 
     - name: publish
       run: dotnet publish $GITHUB_WORKSPACE/WebApplication1/WebApplication1.csproj --configuration Release --output publish/WebApplication1
+    - name: publish
+      run: dotnet publish $GITHUB_WORKSPACE/TestProject1/TestProject1.csproj --configuration Release --output publish/TestProject1
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v3
       with:
