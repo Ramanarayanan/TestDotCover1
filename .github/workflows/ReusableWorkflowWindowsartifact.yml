@@ -27,7 +27,7 @@ jobs:
     - name: Run Tests
       run: |
        
-        dotnet test --no-build --logger:trx
+        dotnet test ./Package/TestProject1/TestProject1.dll --no-build --logger:trx
 
     - name: Install dotCover
       run: |
