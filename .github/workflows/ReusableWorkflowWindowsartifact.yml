@@ -39,14 +39,10 @@ jobs:
       run: |
         # Replace with your actual dotCover command to generate a report
         # Example:
-        # dotcover.exe report /Source=./Package/TestProject1/TestProject1.dll /Output=coverage-report.html
+         dotcover.exe report /Source=./Package/TestProject1/TestProject1.dll /Output=coverage-report.html
 
-    - name: Display or Attach Report
-      run: |
-        # Replace with your steps to display the report, for example, opening an issue with the report attached
-        # Example:
-        # echo "Coverage report is available!"
-        # Create a GitHub issue with the coverage-report.html attached
+    - name: Display coverage report
+      run: Get-Content coverage_report.html
 
     - name: Upload Coverage Report as Artifact
       uses: actions/upload-artifact@v2
