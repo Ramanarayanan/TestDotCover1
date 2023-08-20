@@ -13,14 +13,14 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - run: |
-          echo '*********************************'
+          echo "*********************************"
           echo  ${{ fromJSON(github.event) }}
-            echo '*********************************'
+            echo "*********************************"
           echo "The workflow event is"
           echo  ${{ fromJSON(github.event.workflow_run) }}
-            echo '*********************************'
-           echo 'The triggering workflow passed'
-             echo '*********************************'
+            echo "*********************************"
+           echo "The triggering workflow passed"
+             echo "*********************************"
   build:
     
     uses: ./.github/workflows/uploadartifact.yml
