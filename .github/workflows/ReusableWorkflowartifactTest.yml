@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     
-    uses: ./.github/workflows/uploadartifact.yml
+    uses: ./.github/workflows/middleWorkflow.yml
   
   deploy:
     needs: build
