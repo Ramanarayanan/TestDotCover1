@@ -3,8 +3,24 @@ name: ReusableWorkflowWindowsartifact
 
 on:
   workflow_dispatch:
+  workflow_run:
+     workflows: [uploadartifact]
+     types: [completed]
 
 jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: |
+          echo '*********************************'
+          echo  ${{ fromJSON(github.event) }}
+            echo '*********************************'
+          echo "The workflow event is"
+          echo  ${{ fromJSON(github.event.workflow_run) }}
+            echo '*********************************'
+           echo 'The triggering workflow passed'
+             echo '*********************************'
   build:
     
     uses: ./.github/workflows/uploadartifact.yml
