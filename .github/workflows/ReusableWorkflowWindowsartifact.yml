@@ -20,12 +20,12 @@ jobs:
            echo "$GITHUB_CONTEXT"
            echo "The triggering workflow passed"
            echo "*********************************"
-  build:
+ # build:
     
-    uses: ./.github/workflows/uploadartifact.yml
+   # uses: ./.github/workflows/uploadartifact.yml
   
   deploy:
-    needs: build
+    needs: on-success
     runs-on: windows-latest
     steps:
      - name: Setup .NET
