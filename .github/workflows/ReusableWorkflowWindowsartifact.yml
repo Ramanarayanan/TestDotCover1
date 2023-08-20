@@ -16,10 +16,10 @@ jobs:
       - name: validate git content
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-      - run: |
+        run: |
            echo "$GITHUB_CONTEXT"
            echo "The triggering workflow passed"
-             echo "*********************************"
+           echo "*********************************"
   build:
     
     uses: ./.github/workflows/uploadartifact.yml
