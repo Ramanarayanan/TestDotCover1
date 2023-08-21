@@ -32,14 +32,15 @@ jobs:
        uses: actions/setup-dotnet@v3
        with:
          dotnet-version: 6.0.x
-     - name: Download artifact
-       uses: actions/checkout@v3
-     
-     - uses: actions/download-artifact@v3
-       id: download
+     - uses: Legit-Labs/action-download-artifact@v2
        with:
-        name: Application_Artifact
-        path: ./Package  
+           github_token: ${{secrets.GITHUB_TOKEN}}
+           workflow: uploadartifact.yml
+           workflow_conclusion: success
+           name: Application_Artifact
+     
+     - name: Download artifact
+      
      - name: Unzip Artifact
        run: |
          Get-ChildItem -Path $GITHUB_WORKSPACE -Recurse | Group-Object -Property Extension | sort -Descending -Property Count
