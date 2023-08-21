@@ -1,0 +1,63 @@
+
+name: ReusableWorkflowWindowsartifactTest
+
+on:
+  workflow_dispatch:
+ 
+
+jobs:
+ 
+  
+  deploy:
+  
+    runs-on: ubuntu-latest
+    steps:
+     - name: Setup .NET
+       uses: actions/setup-dotnet@v3
+       with:
+         dotnet-version: 6.0.x
+     - uses: Legit-Labs/action-download-artifact@v2
+       with:
+           github_token: ${{secrets.GITHUB_TOKEN}}
+           workflow: uploadartifact.yml
+           workflow_conclusion: success
+           name: Application_Artifact
+           path: ./Package
+     
+     - name: Download artifact
+      
+     - name: Unzip Artifact
+       run: |
+         Get-ChildItem -Path $GITHUB_WORKSPACE -Recurse | Group-Object -Property Extension | sort -Descending -Property Count
+
+     - name: Run Tests
+       run: |
+       
+        dotnet test ./Package/TestProject1/TestProject1.dll --no-build --logger:trx
+
+     - name: Install dotCover
+       run: |
+        # Install dotCover here, replace with your actual dotCover installation steps
+        # Example:
+            dotnet tool install --global JetBrains.dotCover.GlobalTool
+            
+          
+    
+     - name: Generate Coverage Report
+       run: |
+        # Replace with your actual dotCover command to generate a report
+        # Example:
+        
+         dotnet dotcover test ./Package/TestProject1/TestProject1.dll --dcReportType=HTML --dcOutput=coverage_report.html
+
+     - name: Display coverage report
+       run: Get-Content coverage_report.html
+
+     - name: Upload Coverage Report as Artifact
+       uses: actions/upload-artifact@v2
+       with:
+         name: coverage-report
+         path: coverage-report.html
+          
+  
+    
