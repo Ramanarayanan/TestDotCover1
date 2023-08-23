@@ -75,7 +75,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build . --file ./Dockerfile --tag my-image-name:$(date +%s)
+        run: docker build . --file $GITHUB_WORKSPACE/WebApplication1.Dockerfile --tag my-image-name:$(date +%s)
     
   Docker-build:
     needs: Docker
