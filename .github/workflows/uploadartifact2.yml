@@ -33,7 +33,7 @@ jobs:
          path: |
                 publish/WebApplication1
                 publish/TestProject1
-  deploy:
+  Test:
     needs: build
     runs-on: windows-latest
     steps:
