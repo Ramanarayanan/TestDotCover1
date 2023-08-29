@@ -1,0 +1,11 @@
+name: Access PATH Environment Variable
+
+on: [push]
+
+jobs:
+  path_example:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Display PATH
+      run: echo $PATH
