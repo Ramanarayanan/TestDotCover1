@@ -1,0 +1,74 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: DocketVsTest
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: publish
+      run: dotnet publish $GITHUB_WORKSPACE/WebApplication1/WebApplication1.csproj --configuration Release --output publish/WebApplication1
+    - name: publish
+      run: dotnet publish $GITHUB_WORKSPACE/TestProject1/TestProject1.csproj --configuration Release --output publish/TestProject1
+    - name: Run Bash Docker
+   
+      run: |
+            #!/bin/bash
+              
+              # Define variables
+              APP_NAME="WebApplication1"
+              DOCKER_IMAGE_NAME="dotnet-app-3.1"
+              TEST_DLL_PATH="TestProject1/TestProject1.dll"
+              
+              # Build the .NET Core application
+              dotnet publish -c Release -o ./publish
+              
+              # Create a Dockerfile
+              cat <<EOF > Dockerfile
+              FROM mcr.microsoft.com/dotnet/core/sdk:6.0 AS build
+              WORKDIR /app
+              COPY . .
+              RUN dotnet publish -c Release -o out
+              
+              FROM mcr.microsoft.com/dotnet/core/aspnet:6.0
+              WORKDIR /app
+              COPY --from=build /app/out .
+              ENTRYPOINT ["dotnet", "$APP_NAME.dll"]
+              EOF
+              
+              # Build the Docker image
+              docker build -t $DOCKER_IMAGE_NAME .
+              
+              # Run the Docker container with the .NET Core application
+              docker run -d --name $APP_NAME $DOCKER_IMAGE_NAME
+              
+              # Execute dotnet vstest inside the Docker container
+              docker exec $APP_NAME dotnet vstest $TEST_DLL_PATH
+              
+              # Cleanup: Remove the Docker container and image
+              docker stop $APP_NAME
+              docker rm $APP_NAME
+              docker rmi $DOCKER_IMAGE_NAME
+              
+              # Remove the generated Dockerfile
+              rm Dockerfile
+
+      
+         
+  
