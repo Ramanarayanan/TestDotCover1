@@ -28,7 +28,7 @@ jobs:
       run: dotnet publish $GITHUB_WORKSPACE/TestProject1/TestProject1.csproj --configuration Release --output publish/TestProject1
     - name: Run Bash Docker
    
-      run: |
+      run:  |
              #!/bin/bash
               
               # Define variables
