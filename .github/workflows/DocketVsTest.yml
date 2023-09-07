@@ -71,10 +71,7 @@ jobs:
           
   Install:
     runs-on: windows
-    steps:
-    - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+    steps:   
       - name: Install SDK 6.0
         shell: powershell
         run: |-
