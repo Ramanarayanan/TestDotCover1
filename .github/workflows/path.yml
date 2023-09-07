@@ -13,7 +13,7 @@ jobs:
     - name: Install SDK 6.0
       run: |-
          Write-Host "Downloading SDK"
-          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls, [Net.SecurityProtocolType]::Tls11, [Net.SecurityProtocolType]::Tls12, [Net.SecurityProtocolType]::Ssl3
+     
           Function Install-SDK6.0 {
           param ( [string] $WorkingFolder
           )
