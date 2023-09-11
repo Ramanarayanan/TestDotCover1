@@ -9,14 +9,8 @@ jobs:
     
     steps:
     - name: Display PATH
-      run: echo $PATH
-       
-    - name: list directory
-      run: |-
-          dir
-          "C:\Program Files\dotnet\dotnet.exe" --version
-          "C:\Program Files\dotnet\dotnet.exe" --list-sdks
-          echo ${PATH}
+      run: echo $PATH      
+   
   Script_example:
      runs-on: ubuntu-latest
      steps:
