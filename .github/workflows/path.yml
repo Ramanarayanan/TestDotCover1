@@ -15,7 +15,7 @@ jobs:
      runs-on: ubuntu-latest
      steps:
      - name: Test
-       shell: sh
+       shell: bash
        run: |-
           #!/bin/bash
           $BRANCH = feature/Build-TEST-Workflow:latest
