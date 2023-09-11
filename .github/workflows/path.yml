@@ -20,6 +20,9 @@ jobs:
              #!/bin/bash
              BRANCH="feature/Build-TEST-Workflow:latest"
              BRANCH_MOD="$BRANCH" | tr / -
-             echo BRANCH_MOD
+             echo $BRANCH_MOD
+             new_branch="${BRANCH//\//\-}"
+             echo $new_branch
+
           
            
