@@ -17,8 +17,8 @@ jobs:
      - name: Test
        shell: bash
        run: |-
-          #!/bin/bash
-          $BRANCH = feature/Build-TEST-Workflow:latest
-          BRANCH_MOD = "$BRANCH_NAME" | tr / -
-          echo $BRANCH_MOD
-        
+             #!/bin/bash
+             $BRANCH = feature/Build-TEST-Workflow:latest
+             BRANCH_MOD = "$BRANCH_NAME" | tr / -
+             echo $BRANCH_MOD
+           
