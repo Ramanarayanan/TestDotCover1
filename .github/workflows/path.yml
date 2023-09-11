@@ -10,34 +10,7 @@ jobs:
     steps:
     - name: Display PATH
       run: echo $PATH
-    - name: Install SDK 6.0
-      run: |-
-         Write-Host "Downloading SDK"
-     
-          Function Install-SDK6.0 {
-          param ( [string] $WorkingFolder
-          )
-            $download = "https://download.visualstudio.microsoft.com/download/pr/4a725ea4-cd2c-4383-9b63-263156d5f042/d973777b32563272b85617105a06d272/dotnet-sdk-6.0.406-win-x64.exe"
-            $SDK_installer = Join-Path -Path $WorkingFolder -ChildPath "dotnet-sdk-6.0.406-win-x64.exe"
-            Invoke-WebRequest -Uri $download -OutFile  $SDK_installer
-            If ((Test-Path $SDK_installer)) {
-            "File downloaded!"
-            }
-            else {
-            "File not downloaded!"
-            }
-            "attempting to install..."
-            try{
-              start-process -Wait -FilePath "dotnet-sdk-6.0.406-win-x64.exe" -ArgumentList "/S" -PassThru
-            }
-            catch{
-              $_.Exception
-            }
-          }
-          if(!(Test-Path "C:\Program Files\dotnet\sdk\6.0.406\"))
-          {
-            Install-SDK6.0 "."
-          }      
+       
     - name: list directory
       run: |-
           dir
