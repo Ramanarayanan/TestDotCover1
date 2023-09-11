@@ -44,4 +44,14 @@ jobs:
           "C:\Program Files\dotnet\dotnet.exe" --version
           "C:\Program Files\dotnet\dotnet.exe" --list-sdks
           echo ${PATH}
-         
+  Script_example:
+     runs-on: ubuntu-latest
+     steps:
+     - name: Test
+       shell: sh
+       run: |-
+          #!/bin/bash
+          $BRANCH = feature/Build-TEST-Workflow:latest
+          BRANCH_MOD = "$BRANCH_NAME" | tr / -
+          echo $BRANCH_MOD
+        
