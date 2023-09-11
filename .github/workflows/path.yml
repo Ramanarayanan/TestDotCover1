@@ -18,7 +18,7 @@ jobs:
        shell: bash
        run: |-
              #!/bin/bash
-             $BRANCH = feature/Build-TEST-Workflow:latest
+             $BRANCH = "feature/Build-TEST-Workflow:latest"
              echo "$BRANCH_NAME" | tr / -
           
            
