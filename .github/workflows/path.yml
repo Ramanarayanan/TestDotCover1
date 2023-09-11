@@ -21,8 +21,9 @@ jobs:
              BRANCH="feature/Build-TEST-Workflow:latest"
              BRANCH_MOD="$BRANCH" | tr / -
              echo $BRANCH_MOD
+             echo "The branch name is" $BRANCH
              new_branch="${BRANCH//\//\-}"
-             echo $new_branch
+             echo "The new branch name is" $new_branch
 
           
            
