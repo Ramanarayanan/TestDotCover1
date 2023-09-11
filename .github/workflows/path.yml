@@ -19,6 +19,7 @@ jobs:
        run: |-
              #!/bin/bash
              BRANCH="feature/Build-TEST-Workflow:latest"
-             echo "$BRANCH" | tr / -
+             BRANCH_MOD="$BRANCH" | tr / -
+             echo BRANCH_MOD
           
            
