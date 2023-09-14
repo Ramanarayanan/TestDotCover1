@@ -40,13 +40,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - env:
-          ArtifactName: ${{needs.job1.build.ArtifactName}}
+
     - uses: actions/checkout@v3
 
     - uses: actions/download-artifact@v3
       with:
-        name: ${{env.ArtifactName}}
+        name: ${{needs.job1.build.ArtifactName}}}
         path: ./Package
        
     - name: Display structure of downloaded files
