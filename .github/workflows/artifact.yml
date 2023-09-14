@@ -6,6 +6,8 @@ name: artifact
 on:
   workflow_dispatch:
   workflow_call:
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
 
 jobs:
   build:
@@ -40,10 +42,19 @@ jobs:
       with:
         name: Application_Artifact
         path: ./Package
-        
+       
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: ./Package
+  test:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Display Branch Details
+        run: |
+          echo $BRANCH_NAME
+          echo ${{ github.run_number }}
+          echo ${{ env.BRANCH_NAME }}
+    
     
           
   
